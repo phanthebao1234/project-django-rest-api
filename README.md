@@ -64,9 +64,10 @@ lookup_field trong django là một thuộc tính của các lớp view dựa tr
     ViewSets và routes là hai khái niệm quan trọng trong Django REST framework. Chúng cho phép bạn tạo ra các API một cách nhanh chóng và dễ dàng, bằng cách sử dụng các lớp ViewSet để định nghĩa các hành động như list, retrieve, create, update, destroy, và các hành động tùy chỉnh. Sau đó, bạn có thể sử dụng các lớp Router để tự động tạo ra các URL conf cho các ViewSet, dựa trên các quy ước chung. 12
 
 Ví dụ, bạn có thể tạo một ViewSet cho model User như sau:
-code
+
 Python
 
+```c
 from django.contrib.auth.models import User
 from rest_framework import viewsets
 from myapp.serializers import UserSerializer
@@ -75,4 +76,4 @@ class UserViewSet(viewsets.ModelViewSet):
     \"\"\"  A viewset for viewing and editing user instances.  \"\"\"
     serializer_class = UserSerializer
     queryset = User.objects.all()
-code:
+```
