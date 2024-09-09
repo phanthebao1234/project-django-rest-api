@@ -1,5 +1,7 @@
+algoliasearch-django>=3.0,<4.0
 django>=4.0.0,<4.1.0
 python-rest-framework
 pyyaml
 requests
 django-cros-headers
+psycopg2-binary
