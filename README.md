@@ -1,37 +1,190 @@
 
 # Theo tài liệu chính thức của Django REST framework, có sáu loại mixin được hỗ trợ, là
 
-ListModelMixin: Cung cấp phương thức list() để trả về một danh sách các đối tượng model.
-CreateModelMixin: Cung cấp phương thức create() để tạo một đối tượng model mới.
-RetrieveModelMixin: Cung cấp phương thức retrieve() để trả về một đối tượng model cụ thể.
-UpdateModelMixin: Cung cấp phương thức update() và partial_update() để cập nhật một đối tượng model hiện có.
-DestroyModelMixin: Cung cấp phương thức destroy() để xóa một đối tượng model hiện có.
-GenericModelMixin: Cung cấp các thuộc tính queryset và serializer_class để xác định các đối tượng model và serializer cho view
-
+ListModelMixin: Cung cấp phương thức list() để trả về một danh sách các đối tượng model.<br> \
+CreateModelMixin: Cung cấp phương thức create() để tạo một đối tượng model mới.<br> \
+RetrieveModelMixin: Cung cấp phương thức retrieve() để trả về một đối tượng model cụ thể.<br> \
+UpdateModelMixin: Cung cấp phương thức update() và partial_update() để cập nhật một đối tượng model hiện có. <br> \
+DestroyModelMixin: Cung cấp phương thức destroy() để xóa một đối tượng model hiện có.<br> \
+GenericModelMixin: Cung cấp các thuộc tính queryset và serializer_class để xác định các đối tượng model và serializer cho view.
+<br><br>
 ## lookup_field
 
 lookup_field trong django là một thuộc tính của các lớp view dựa trên GenericAPIView, dùng để xác định trường dữ liệu sẽ được sử dụng làm khóa để tìm kiếm một đối tượng model cụ thể. Mặc định, lookup_field là ‘pk’, tức là trường primary key của model. Bạn có thể thay đổi lookup_field bằng một trường khác, miễn là trường đó là duy nhất và có thể truy vấn được. Bạn cũng cần phải khớp lookup_field với tham số tương ứng trong URL conf của view.
 
 ## Theo tài liệu của REST framework1, có 11 class permission có sẵn trong REST framework, bao gồm
 
-**AllowAny**: Cho phép truy cập cho tất cả các yêu cầu, không cần xác thực hoặc kiểm tra quyền.
-**IsAuthenticated**: Yêu cầu yêu cầu phải được xác thực, nếu không sẽ từ chối truy cập.
-**IsAdminUser**: Yêu cầu yêu cầu phải được xác thực và là một người dùng quản trị, nếu không sẽ từ chối truy cập.
-**IsAuthenticatedOrReadOnly**: Cho phép truy cập cho các yêu cầu được xác thực, hoặc các yêu cầu chỉ đọc (GET, HEAD, OPTIONS) nếu không được xác thực.
-**DjangoModelPermissions**: Sử dụng các quyền của model Django để xác định quyền truy cập. Yêu cầu yêu cầu phải được xác thực, và người dùng phải có quyền thích hợp cho các phương thức GET, POST, PUT, PATCH, DELETE.
-**DjangoModelPermissionsOrAnonReadOnly**: Tương tự như DjangoModelPermissions, nhưng cho phép truy cập cho các yêu cầu chỉ đọc nếu không được xác thực.
-**DjangoObjectPermissions**: Sử dụng các quyền của object Django để xác định quyền truy cập. Yêu cầu yêu cầu phải được xác thực, và người dùng phải có quyền thích hợp cho các phương thức GET, POST, PUT, PATCH, DELETE trên từng đối tượng riêng lẻ.
-**DjangoObjectPermissionsOrAnonReadOnly**: Tương tự như DjangoObjectPermissions, nhưng cho phép truy cập cho các yêu cầu chỉ đọc nếu không được xác thực.
-**TokenHasReadWriteScope**: Sử dụng các scope của token OAuth2 để xác định quyền truy cập. Yêu cầu yêu cầu phải được xác thực bằng token, và token phải có scope thích hợp cho các phương thức GET, POST, PUT, PATCH, DELETE.
-**TokenHasScope**: Sử dụng các scope của token OAuth2 để xác định quyền truy cập. Yêu cầu yêu cầu phải được xác thực bằng token, và token phải có ít nhất một trong các scope được chỉ định.
+**AllowAny**: Cho phép truy cập cho tất cả các yêu cầu, không cần xác thực hoặc kiểm tra quyền.<br> \
+**IsAuthenticated**: Yêu cầu yêu cầu phải được xác thực, nếu không sẽ từ chối truy cập.<br> \
+**IsAdminUser**: Yêu cầu yêu cầu phải được xác thực và là một người dùng quản trị, nếu không sẽ từ chối truy cập.<br> \
+**IsAuthenticatedOrReadOnly**: Cho phép truy cập cho các yêu cầu được xác thực, hoặc các yêu cầu chỉ đọc (GET, HEAD, OPTIONS) nếu không được xác thực.<br> \
+**DjangoModelPermissions**: Sử dụng các quyền của model Django để xác định quyền truy cập. Yêu cầu yêu cầu phải được xác thực, và người dùng phải có quyền thích hợp cho các phương thức GET, POST, PUT, PATCH, DELETE.<br> \
+**DjangoModelPermissionsOrAnonReadOnly**: Tương tự như DjangoModelPermissions, nhưng cho phép truy cập cho các yêu cầu chỉ đọc nếu không được xác thực.<br> \
+**DjangoObjectPermissions**: Sử dụng các quyền của object Django để xác định quyền truy cập. Yêu cầu yêu cầu phải được xác thực, và người dùng phải có quyền thích hợp cho các phương thức GET, POST, PUT, PATCH, DELETE trên từng đối tượng riêng lẻ.<br> \
+**DjangoObjectPermissionsOrAnonReadOnly**: Tương tự như DjangoObjectPermissions, nhưng cho phép truy cập cho các yêu cầu chỉ đọc nếu không được xác thực.<br> \
+**TokenHasReadWriteScope**: Sử dụng các scope của token OAuth2 để xác định quyền truy cập. Yêu cầu yêu cầu phải được xác thực bằng token, và token phải có scope thích hợp cho các phương thức GET, POST, PUT, PATCH, DELETE.<br> \
+**TokenHasScope**: Sử dụng các scope của token OAuth2 để xác định quyền truy cập. Yêu cầu yêu cầu phải được xác thực bằng token, và token phải có ít nhất một trong các scope được chỉ định.<br> \
 **IsOwnerOrReadOnly**: Cho phép truy cập cho người dùng là chủ sở hữu của đối tượng, hoặc các yêu cầu chỉ đọc.
+<br>
+<br>
+1. <ins>Django Model Instance as API Response</ins>
 
-1. Django Model Instance as API Response
+Trong Django, để trả về một instance của model dưới dạng API response, bạn thường sử dụng Django REST framework (DRF). Đây là một cách để chuyển đổi dữ liệu phức tạp từ các instance của model Django thành các định dạng dễ sử dụng như JSON, XML, v.v.\
+Cài đặt Django REST framework:
+``` pip install djangorestframework ``` \
+Thêm DRF vào INSTALLED_APPS trong settings.py
+```c
+INSTALLED_APPS = [
+    ...
+    'rest_framework',
+]
 
-2. Django Model Instance to Dictionary
+```
+Tạo Serializer: Serializer giúp chuyển đổi dữ liệu từ model Django thành các định dạng như JSON.
+```c
+    from rest_framework import serializers
+    from .models import YourModel
+    
+    class YourModelSerializer(serializers.ModelSerializer):
+        class Meta:
+            model = YourModel
+            fields = '__all__'
+```
+Tạo View: Sử dụng APIView hoặc @api_view để tạo view trả về dữ liệu đã được serialize.
+```c
+    from rest_framework.response import Response
+    from rest_framework.decorators import api_view
+    from .models import YourModel
+    from .serializers import YourModelSerializer
+    
+    @api_view(['GET'])
+    def your_model_detail(request, pk):
+        try:
+            instance = YourModel.objects.get(pk=pk)
+        except YourModel.DoesNotExist:
+            return Response(status=404)
+        
+        serializer = YourModelSerializer(instance)
+        return Response(serializer.data)
+```
+Cấu hình URLs: Liên kết view với một URL trong urls.py.
+```c
+    from django.urls import path
+    from .views import your_model_detail
+    
+    urlpatterns = [
+        path('yourmodel/<int:pk>/', your_model_detail, name='your_model_detail'),
+    ]
+```
+Với cấu hình này, bạn có thể lấy một instance của model và trả về nó dưới dạng JSON thông qua một endpoint API.
 
-3. Rest Framework View & Response
+<br>
+<br>
+2. <ins>Django Model Instance to Dictionary</ins>
 
+Trong Django, việc chuyển đổi một instance của model thành dictionary có thể hữu ích cho nhiều mục đích như debug, serialization, hoặc gửi dữ liệu đến client. Có một số cách để thực hiện điều này:
+Sử dụng model_to_dict từ django.forms.models \
+Django cung cấp hàm model_to_dict trong module django.forms.models, giúp chuyển đổi một instance của model thành dictionary. Đây là cách đơn giản và phổ biến nhất:
+```c
+from django.forms.models import model_to_dict
+from .models import YourModel
+
+instance = YourModel.objects.get(pk=1)
+data = model_to_dict(instance)
+print(data)
+```
+Sử dụng thuộc tính <strong>__dict__</strong>\
+Bạn cũng có thể sử dụng thuộc tính __dict__ của instance, nhưng cách này sẽ bao gồm cả các thuộc tính nội bộ của Django:
+```c
+instance = YourModel.objects.get(pk=1)
+data = instance.__dict__
+print(data)
+```
+Để loại bỏ các thuộc tính nội bộ, bạn có thể lọc lại dictionary:
+```c
+data = {key: value for key, value in instance.__dict__.items() if not key.startswith('_')}
+print(data)
+```
+Sử dụng phương thức <strong>values()</strong>\
+Nếu bạn chỉ cần các giá trị của các trường cụ thể, bạn có thể sử dụng phương thức values():
+```c
+data = YourModel.objects.filter(pk=1).values().first()
+print(data)
+```
+Lợi ích và hạn chế\
+Lợi ích: Dictionaries dễ sử dụng, linh hoạt và hiệu quả trong việc truy cập dữ liệu.\
+Hạn chế: Dictionaries không bảo mật và không tối ưu như models, có thể ảnh hưởng đến hiệu suất của ứng dụng123.
+<br>
+<br>
+3. <ins>Rest Framework View & Response</ins>
+
+Trong phát triển ứng dụng với Django REST Framework (DRF), hai khái niệm quan trọng là <strong>View</strong> và <strong>Response</strong>. Đây là những thành phần cốt lõi giúp xây dựng và quản lý các API.\
+View trong Django REST Framework. \
+<strong>View</strong> là nơi xử lý các yêu cầu HTTP và trả về các phản hồi tương ứng. DRF cung cấp nhiều loại view để bạn có thể dễ dàng xây dựng API:
+<strong>Function-Based Views (FBV)</strong>: Sử dụng các hàm để xử lý yêu cầu.
+```
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+
+@api_view(['GET'])
+def example_view(request):
+    data = {"message": "Hello, world!"}
+    return Response(data)
+```
+<br>
+<strong>Class-Based Views (CBV)</strong>: Sử dụng các lớp để xử lý yêu cầu, giúp mã nguồn dễ bảo trì và mở rộng.
+
+```
+from rest_framework.views import APIView
+from rest_framework.response import Response
+class ExampleView(APIView):
+    def get(self, request):
+        data = {"message": "Hello, world!"}
+        return Response(data)
+```
+<br>
+<strong>Generic Views</strong>: DRF cung cấp các generic views để thực hiện các thao tác CRUD một cách tự động.
+
+```
+from rest_framework import generics
+from .models import YourModel
+from .serializers import YourModelSerializer
+
+class YourModelListCreate(generics.ListCreateAPIView):
+    queryset = YourModel.objects.all()
+    serializer_class = YourModelSerializer
+```
+<br>
+<strong>Response trong Django REST Framework</strong><br>
+<strong>Response là đối tượng được trả về từ các view để gửi dữ liệu đến client. DRF cung cấp lớp `Response` để dễ dàng tạo các phản hồi HTTP với dữ liệu đã được serialize.</strong>
+<br>
+Tạo Response: Bạn có thể tạo một response đơn giản bằng cách sử dụng lớp Response
+
+```
+from rest_framework.response import Response
+
+def example_view(request):
+    data = {"message": "Hello, world!"}
+    return Response(data)
+```
+Xử lý lỗi: DRF cũng cung cấp các công cụ để xử lý lỗi và trả về các mã trạng thái HTTP phù hợp. 
+```
+from rest_framework.exceptions import NotFound
+
+def example_view(request):
+    if some_condition_not_met:
+        raise NotFound("Resource not found")
+    data = {"message": "Hello, world!"}
+    return Response(data)
+
+```
+<br>
+<strong>Lợi ích của việc sử dụng View và Response trong DRF</strong> <br> 
+<strong>Tính linh hoạt:</strong> DRF cho phép bạn dễ dàng tùy chỉnh và mở rộng các view và response theo nhu cầu của ứng dụng.<br> 
+<strong>Quản lý lỗi tốt:</strong> DRF cung cấp các công cụ mạnh mẽ để xử lý và quản lý lỗi, giúp API của bạn trở nên đáng tin cậy hơn. <br>
+<strong>Tích hợp dễ dàng:</strong> DRF tích hợp tốt với các thành phần khác của Django, giúp bạn xây dựng các ứng dụng web một cách hiệu quả. 
+<br>
+<br>
 4. Django Rest Framework Model Serializers
 
 5. Ingest Data with Django Rest Framework Views
