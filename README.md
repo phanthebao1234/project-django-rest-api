@@ -185,9 +185,82 @@ def example_view(request):
 <strong>Tích hợp dễ dàng:</strong> DRF tích hợp tốt với các thành phần khác của Django, giúp bạn xây dựng các ứng dụng web một cách hiệu quả. 
 <br>
 <br>
-4. Django Rest Framework Model Serializers
+4.<ins>Django Rest Framework Model Serializers</ins> 
 
-5. Ingest Data with Django Rest Framework Views
+Model Serializers trong Django REST Framework (DRF) là một tính năng mạnh mẽ giúp đơn giản hóa quá trình chuyển đổi (serialize) và khôi phục (deserialize) các đối tượng model của Django sang và từ định dạng JSON. \
+Một số điểm nổi bật của Model Serializers: \ 
+    Chuyển đổi dữ liệu phức tạp: Model Serializers cho phép chuyển đổi các dữ liệu phức tạp như queryset và các instance của model thành các kiểu dữ liệu Python nguyên thủy, sau đó có thể dễ dàng render thành JSON, XML hoặc các loại nội dung khác. \
+    Tự động ánh xạ các trường: Model Serializers tự động ánh xạ các trường của model Django với các trường tương ứng trong serializer, giúp giảm thiểu mã cần viết. \
+    Xác thực dữ liệu: Model Serializers cung cấp các phương thức để xác thực dữ liệu trước khi lưu vào cơ sở dữ liệu. \
+Ví dụ: 
+```c
+from rest_framework import serializers
+from myapp.models import MyModel
+
+class MyModelSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MyModel
+        fields = ['field1', 'field2', 'field3']
+
+```
+Trong ví dụ trên, MyModelSerializer sẽ tự động ánh xạ các trường field1, field2, và field3 từ model MyModel và cung cấp các phương thức để serialize và deserialize dữ liệu. \
+
+
+5.<ins>Ingest Data with Django Rest Framework Views</ins>
+
+Trong Django REST Framework (DRF), Views là nơi bạn định nghĩa logic xử lý các yêu cầu HTTP. Để ingest (nhập) dữ liệu, bạn thường sử dụng các lớp view như APIView hoặc các view dựa trên generic như CreateAPIView, ListCreateAPIView, v.v \
+
+<str>Sử dụng APIView để Ingest Dữ liệu</str> \
+
+APIView cung cấp nhiều phương thức để xử lý các yêu cầu HTTP như GET, POST, PUT, DELETE. Dưới đây là một ví dụ về cách sử dụng APIView để ingest dữ liệu: \
+```c
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from myapp.models import MyModel
+from myapp.serializers import MyModelSerializer
+
+class MyModelAPIView(APIView):
+    def post(self, request):
+        serializer = MyModelSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+```
+Trong ví dụ này:
+
+POST: Phương thức post nhận dữ liệu từ yêu cầu, kiểm tra tính hợp lệ của dữ liệu bằng serializer, và lưu dữ liệu vào cơ sở dữ liệu nếu hợp lệ. \ 
+
+<str>Sử dụng Generic Views để Ingest Dữ liệu</str>
+
+Generic views cung cấp các lớp view có sẵn để xử lý các thao tác CRUD. Dưới đây là ví dụ sử dụng CreateAPIView để ingest dữ liệu: \
+```c
+from rest_framework.generics import CreateAPIView
+from myapp.models import MyModel
+from myapp.serializers import MyModelSerializer
+
+class MyModelCreateView(CreateAPIView):
+    queryset = MyModel.objects.all()
+    serializer_class = MyModelSerializer
+
+```
+Trong ví dụ này:
+
+CreateAPIView: Tự động xử lý các yêu cầu POST để tạo mới một đối tượng model. \
+
+<ins>Ví dụ đầy đủ với URL routing:</ins>
+```c
+from django.urls import path
+from myapp.views import MyModelCreateView
+
+urlpatterns = [
+    path('mymodel/', MyModelCreateView.as_view(), name='mymodel-create'),
+]
+```
+Với đoạn mã trên, bạn đã tạo một endpoint /mymodel/ để ingest dữ liệu vào model MyModel.
+
 
 6. Django Rest Framework Generics RetrieveAPIView
 
