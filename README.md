@@ -27,7 +27,7 @@ lookup_field trong django là một thuộc tính của các lớp view dựa tr
 **IsOwnerOrReadOnly**: Cho phép truy cập cho người dùng là chủ sở hữu của đối tượng, hoặc các yêu cầu chỉ đọc.
 <br>
 <br>
-1. <ins>Django Model Instance as API Response</ins>
+1. <h3><ins>Django Model Instance as API Response</ins></h3>
 
 Trong Django, để trả về một instance của model dưới dạng API response, bạn thường sử dụng Django REST framework (DRF). Đây là một cách để chuyển đổi dữ liệu phức tạp từ các instance của model Django thành các định dạng dễ sử dụng như JSON, XML, v.v.\
 Cài đặt Django REST framework:
@@ -80,7 +80,7 @@ Với cấu hình này, bạn có thể lấy một instance của model và tr�
 
 <br>
 <br>
-2. <ins>Django Model Instance to Dictionary</ins>
+2. <h3><ins>Django Model Instance to Dictionary</ins></h3>
 
 Trong Django, việc chuyển đổi một instance của model thành dictionary có thể hữu ích cho nhiều mục đích như debug, serialization, hoặc gửi dữ liệu đến client. Có một số cách để thực hiện điều này:
 Sử dụng model_to_dict từ django.forms.models \
@@ -116,7 +116,7 @@ Lợi ích: Dictionaries dễ sử dụng, linh hoạt và hiệu quả trong vi
 Hạn chế: Dictionaries không bảo mật và không tối ưu như models, có thể ảnh hưởng đến hiệu suất của ứng dụng123.
 <br>
 <br>
-3. <ins>Rest Framework View & Response</ins>
+3. <h3><ins>Rest Framework View & Response</ins></h3>
 
 Trong phát triển ứng dụng với Django REST Framework (DRF), hai khái niệm quan trọng là <strong>View</strong> và <strong>Response</strong>. Đây là những thành phần cốt lõi giúp xây dựng và quản lý các API.\
 View trong Django REST Framework. \
@@ -185,13 +185,13 @@ def example_view(request):
 <strong>Tích hợp dễ dàng:</strong> DRF tích hợp tốt với các thành phần khác của Django, giúp bạn xây dựng các ứng dụng web một cách hiệu quả. 
 <br>
 <br>
-4.<ins>Django Rest Framework Model Serializers</ins> 
+4.<h3>><ins>Django Rest Framework Model Serializers</ins></h3>
 
-Model Serializers trong Django REST Framework (DRF) là một tính năng mạnh mẽ giúp đơn giản hóa quá trình chuyển đổi (serialize) và khôi phục (deserialize) các đối tượng model của Django sang và từ định dạng JSON. \
-Một số điểm nổi bật của Model Serializers: \ 
-    Chuyển đổi dữ liệu phức tạp: Model Serializers cho phép chuyển đổi các dữ liệu phức tạp như queryset và các instance của model thành các kiểu dữ liệu Python nguyên thủy, sau đó có thể dễ dàng render thành JSON, XML hoặc các loại nội dung khác. \
-    Tự động ánh xạ các trường: Model Serializers tự động ánh xạ các trường của model Django với các trường tương ứng trong serializer, giúp giảm thiểu mã cần viết. \
-    Xác thực dữ liệu: Model Serializers cung cấp các phương thức để xác thực dữ liệu trước khi lưu vào cơ sở dữ liệu. \
+Model Serializers trong Django REST Framework (DRF) là một tính năng mạnh mẽ giúp đơn giản hóa quá trình chuyển đổi (serialize) và khôi phục (deserialize) các đối tượng model của Django sang và từ định dạng JSON. <br> <br> 
+<strong>Một số điểm nổi bật của Model Serializers:</strong> <br>  
+    &emsp;&bull;&nbsp;Chuyển đổi dữ liệu phức tạp: Model Serializers cho phép chuyển đổi các dữ liệu phức tạp như queryset và các instance của model thành các kiểu dữ liệu Python nguyên thủy, sau đó có thể dễ dàng render thành JSON, XML hoặc các loại nội dung khác. <br> 
+    &emsp;&bull;&nbsp;Tự động ánh xạ các trường: Model Serializers tự động ánh xạ các trường của model Django với các trường tương ứng trong serializer, giúp giảm thiểu mã cần viết.<br> 
+    &emsp;&bull;&nbsp;Xác thực dữ liệu: Model Serializers cung cấp các phương thức để xác thực dữ liệu trước khi lưu vào cơ sở dữ liệu. <br> 
 Ví dụ: 
 ```c
 from rest_framework import serializers
@@ -203,16 +203,16 @@ class MyModelSerializer(serializers.ModelSerializer):
         fields = ['field1', 'field2', 'field3']
 
 ```
-Trong ví dụ trên, MyModelSerializer sẽ tự động ánh xạ các trường field1, field2, và field3 từ model MyModel và cung cấp các phương thức để serialize và deserialize dữ liệu. \
+Trong ví dụ trên, MyModelSerializer sẽ tự động ánh xạ các trường field1, field2, và field3 từ model MyModel và cung cấp các phương thức để serialize và deserialize dữ liệu. <br> <br> 
 
 
-5.<ins>Ingest Data with Django Rest Framework Views</ins>
+5.<h3><ins>Ingest Data with Django Rest Framework Views</ins></h3>
 
-Trong Django REST Framework (DRF), Views là nơi bạn định nghĩa logic xử lý các yêu cầu HTTP. Để ingest (nhập) dữ liệu, bạn thường sử dụng các lớp view như APIView hoặc các view dựa trên generic như CreateAPIView, ListCreateAPIView, v.v \
+Trong Django REST Framework (DRF), Views là nơi bạn định nghĩa logic xử lý các yêu cầu HTTP. Để ingest (nhập) dữ liệu, bạn thường sử dụng các lớp view như APIView hoặc các view dựa trên generic như CreateAPIView, ListCreateAPIView, v.v <br>
 
-<str>Sử dụng APIView để Ingest Dữ liệu</str> \
+<strong>Sử dụng APIView để Ingest Dữ liệu</strong> <br>
 
-APIView cung cấp nhiều phương thức để xử lý các yêu cầu HTTP như GET, POST, PUT, DELETE. Dưới đây là một ví dụ về cách sử dụng APIView để ingest dữ liệu: \
+APIView cung cấp nhiều phương thức để xử lý các yêu cầu HTTP như GET, POST, PUT, DELETE. Dưới đây là một ví dụ về cách sử dụng APIView để ingest dữ liệu: <br>
 ```c
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -231,11 +231,11 @@ class MyModelAPIView(APIView):
 ```
 Trong ví dụ này:
 
-POST: Phương thức post nhận dữ liệu từ yêu cầu, kiểm tra tính hợp lệ của dữ liệu bằng serializer, và lưu dữ liệu vào cơ sở dữ liệu nếu hợp lệ. \ 
+POST: Phương thức post nhận dữ liệu từ yêu cầu, kiểm tra tính hợp lệ của dữ liệu bằng serializer, và lưu dữ liệu vào cơ sở dữ liệu nếu hợp lệ. <br>
 
-<str>Sử dụng Generic Views để Ingest Dữ liệu</str>
+<strong>Sử dụng Generic Views để Ingest Dữ liệu</strong>
 
-Generic views cung cấp các lớp view có sẵn để xử lý các thao tác CRUD. Dưới đây là ví dụ sử dụng CreateAPIView để ingest dữ liệu: \
+Generic views cung cấp các lớp view có sẵn để xử lý các thao tác CRUD. Dưới đây là ví dụ sử dụng CreateAPIView để ingest dữ liệu: <br>
 ```c
 from rest_framework.generics import CreateAPIView
 from myapp.models import MyModel
@@ -248,9 +248,9 @@ class MyModelCreateView(CreateAPIView):
 ```
 Trong ví dụ này:
 
-CreateAPIView: Tự động xử lý các yêu cầu POST để tạo mới một đối tượng model. \
+CreateAPIView: Tự động xử lý các yêu cầu POST để tạo mới một đối tượng model. <br>
 
-<ins>Ví dụ đầy đủ với URL routing:</ins>
+<strong>Ví dụ đầy đủ với URL routing:</strong>
 ```c
 from django.urls import path
 from myapp.views import MyModelCreateView
@@ -260,7 +260,7 @@ urlpatterns = [
 ]
 ```
 Với đoạn mã trên, bạn đã tạo một endpoint /mymodel/ để ingest dữ liệu vào model MyModel.
-
+<br>
 
 6. Django Rest Framework Generics RetrieveAPIView
 
